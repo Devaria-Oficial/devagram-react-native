@@ -7,7 +7,7 @@ import styles from "./styles"
 import { colors } from '../../../app.json'
 import { LinearGradient } from "expo-linear-gradient"
 
-const Avatar = (props: { withBorder?: boolean, user: IUserData | IUser }) => {
+const Avatar = (props: { withBorder?: boolean, user: IUserData | IUser, image?: any }) => {
     type navigationTypes = NativeStackNavigationProp<RootStackParamList, 'Home'>
     const navigation = useNavigation<navigationTypes>()
 
@@ -19,7 +19,10 @@ const Avatar = (props: { withBorder?: boolean, user: IUserData | IUser }) => {
             >
                 <Image
                     style={styles.imageUserWithBorder}
-                    source={props.user.avatar ?
+                    source={props.image?
+                        { uri: props.image.uri }
+                        :
+                        props.user.avatar ?
                         { uri: props.user.avatar }
                         : require('../../_assets/images/user.png')} />
             </LinearGradient>

@@ -12,6 +12,10 @@ const register = async (body: FormData) => {
     await DevagramApiService.post('/cadastro', body, {"content-Type": "multipart/form-data"})
 }
 
+const update = async (body: FormData) => {
+    await DevagramApiService.put('/usuario', body, {"content-Type": "multipart/form-data"})
+}
+
 const updateCurrentUser = async () => {
     const user = await DevagramApiService.get('/usuario')
     await AsyncStorage.setItem('name', user.data.nome)
@@ -44,4 +48,4 @@ const toggleFollow = async (id: string) => {
     return await DevagramApiService.put(`/seguir?id=${id}`)
 }
 
-export {login, getCurrentUser, register, search, getProfile, toggleFollow}
+export {login, getCurrentUser, register, search, getProfile, toggleFollow, update}

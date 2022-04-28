@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
         fontFamily: 'biennale',
         fontSize: 12,
         fontWeight: '700'
+    },
+    textSubmitDisabled:{
+        color: colors.grayColor01,
+        fontFamily: 'biennale',
+        fontSize: 12,
+        fontWeight: '700'
     }
 });
 

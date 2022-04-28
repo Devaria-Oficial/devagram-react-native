@@ -27,9 +27,8 @@ const Search = (props: { filter: string }) => {
         try {
             setIsLoading(true)
             const { data } = await UserService.search(props.filter)
+            console.log('data', data)
             const usersFormated: IUserData[] = data?.map((user: any, index: number) => {
-                console.log('segueEsseUsuario',  user.data.segueEsseUsuario)
-
                 const userFormated: IUserData = {
                     index: index,
                     id: user._id,
@@ -40,9 +39,10 @@ const Search = (props: { filter: string }) => {
                     posts: user.publicacoes,
                     name: user.nome,
                 }
-
                 return userFormated
             })
+
+            console.log(usersFormated)
 
             setUsers(usersFormated)
             setIsLoading(false)

@@ -18,8 +18,8 @@ const Footer = (props: IFooter) => {
             iconActivated: require('../../../_assets/images/homeAtivo.png'),
         },
         {
-            title: 'NewPublication',
-            onPress: () => {navigation.navigate('NewPublication')},
+            title: 'Publication',
+            onPress: () => {navigation.navigate('Publication')},
             icon: require('../../../_assets/images/newPublication.png'),
             iconActivated: require('../../../_assets/images/newPublicationAtivo.png'),
         },
