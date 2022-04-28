@@ -8,6 +8,7 @@ import { RootStackParamList } from "../../_routes/RootStackPrams"
 import styles from "./styles"
 import * as ImagePicker from 'expo-image-picker'
 import * as UserService from '../../_services/UserService';
+import Loading from "../../_components/Container/Loading"
 
 const EditProfile = () => {
     type navigationTypes = NativeStackNavigationProp<RootStackParamList, 'Profile'>
@@ -17,6 +18,7 @@ const EditProfile = () => {
     const [name, setName] = useState<string>('')
     const [hasName, setHasName] = useState<boolean>(false)
     const [image, setImage] = useState<any>()
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const pickImage = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
@@ -33,6 +35,7 @@ const EditProfile = () => {
     const editProfile = async () => {
         if (image || name) {
             try {
+                setIsLoading(true)
                 const body = new FormData()
                 if (image) {
                     const file: any = {
@@ -46,8 +49,10 @@ const EditProfile = () => {
                     body.append("nome", name)
                 }
                 await UserService.update(body)
+                setIsLoading(false)
                 navigation.goBack()
             } catch (err: any) {
+                setIsLoading(false)
                 console.log(err)
                 Alert.alert("Erro", "Erro ao alterar as informacoes do perfil")
             }
@@ -56,6 +61,7 @@ const EditProfile = () => {
 
     return (
         <Container
+            isLoading={isLoading}
             headerProps={{
                 editProfileHeader: {
                     submit: editProfile,
@@ -98,7 +104,6 @@ const EditProfile = () => {
                         </View>
                     </View>
                 }
-
             </View>
         </Container>
     )

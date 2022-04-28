@@ -6,8 +6,9 @@ import { IUser, IUserData } from "../../_services/UserService/types"
 import styles from "./styles"
 import { colors } from '../../../app.json'
 import { LinearGradient } from "expo-linear-gradient"
+import { IAvatar } from "./types"
 
-const Avatar = (props: { withBorder?: boolean, user: IUserData | IUser, image?: any }) => {
+const Avatar = (props: IAvatar) => {
     type navigationTypes = NativeStackNavigationProp<RootStackParamList, 'Home'>
     const navigation = useNavigation<navigationTypes>()
 

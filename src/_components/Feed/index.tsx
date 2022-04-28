@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ActivityIndicator, Alert, FlatList, View } from "react-native"
+import { Alert, FlatList, View } from "react-native"
 import { IUserData } from "../../_services/UserService/types"
 import * as FeedService from '../../_services/FeedService';
 import { IPost } from "./Post/types";
@@ -8,6 +8,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import Post from "./Post";
 import { colors } from '../../../app.json'
+import Loading from "../Container/Loading";
 
 const Feed = (props: { isProfileFeed?: boolean, profile?: IUserData }) => {
     type navigationTypes = NativeStackNavigationProp<RootStackParamList, 'Home'>
@@ -69,12 +70,7 @@ const Feed = (props: { isProfileFeed?: boolean, profile?: IUserData }) => {
                 renderItem={({ item }) => (<Post post={item}/>)}
                 onEndReachedThreshold={0.1}
                 ListFooterComponent={() => (
-                    isLoading ?
-                        <View>
-                            <ActivityIndicator size={30} color={colors.primaryColor} />
-                        </View>
-                        :
-                        null
+                    <Loading isLoading={isLoading}/>
                 )}
             />
         </View>

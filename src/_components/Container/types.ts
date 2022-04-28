@@ -5,5 +5,6 @@ import { ReactElement } from "react";
 export interface IContainer {
     children: ReactElement<any, any>
     footerProps: IFooter,
-    headerProps: IHeader
+    headerProps: IHeader,
+    isLoading?: boolean
 }

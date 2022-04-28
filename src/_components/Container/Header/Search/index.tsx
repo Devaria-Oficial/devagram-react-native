@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from "react-native"
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
 import { IUserData } from "../../../../_services/UserService/types"
 import * as UserService from '../../../../_services/UserService';
 import { colors } from '../../../../../app.json'
@@ -8,6 +8,7 @@ import Avatar from "../../../Avatar";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../../_routes/RootStackPrams";
 import { useNavigation } from "@react-navigation/native";
+import Loading from "../../Loading";
 
 const Search = (props: { filter: string }) => {
     type navigationTypes = NativeStackNavigationProp<RootStackParamList, 'Home'>
@@ -74,12 +75,7 @@ const Search = (props: { filter: string }) => {
                     renderItem={({ item }) => renderItem(item)}
                     onEndReachedThreshold={0.1}
                     ListFooterComponent={() => (
-                        isLoading ?
-                            <View>
-                                <ActivityIndicator size={30} color={colors.primaryColor} />
-                            </View>
-                            :
-                            null
+                        <Loading isLoading={isLoading}/>
                     )}
                 />
             }
